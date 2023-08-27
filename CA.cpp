@@ -23,20 +23,38 @@ void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray
 int main(){
 
     int ruleSetNumber;
-    
+    int ruleSetArray[8];
+
     std::cout << "Welcome to Cellular Automata!" << std::endl;
     std::cout << "Please input your ruleset as a single integer from 0-255:" <<std::endl;
     std::cin >> ruleSetNumber;
+
+    if (ruleSetNumber < 0 || ruleSetNumber > 255) //Potential Feature: Deal with multiple integer inputs or non integer inputs.
+    {
+        std::cout << "Invalid input. Exiting Program." << std::endl;
+        return 0;
+    }
+
     std::cout << "You Wrote:" <<std::endl;
-    std::cout << ruleSetNumber <<std::endl;
+
+    convertRuleSetNumberToRuleSetArray(ruleSetNumber, ruleSetArray);
+    for (int i = 0; i < 8; i++)
+    {
+        std::cout << ruleSetArray[i] <<std::endl;
+    }
+    
+
     return 0;
 }
 
 /// @brief Converts a rule set number to a preexisting rule set array. The rule set array will be a conversion of the rule set number
-/// in binary going from LEFT TO RIGHT @example ruleset 5 = [1,0,1,0,0,0,0,0]
+/// in binary going from LEAST SIGNINGICANT DIGIT TO MOST SIGNIFICANT DIGIT @example ruleset 5 = [1,0,1,0,0,0,0,0]
 /// @param ruleSetNumber a number between 0 and 255 that represenets the ruleset you would like to implement.
 /// @param rulSsetArray an array OF LENGTH 8 that the ruleset will be mapped on to.
-void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSsetArray[8]){
+void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSetArray[8]){
+    for (int i = 0; i < 8; i++){
+        ruleSetArray[i] = 0;
+    }
 
 }
 
