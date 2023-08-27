@@ -19,6 +19,7 @@ void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSsetArray[8])
 void displayCurrentGeneration(int currentGenerationArray[], int currentGenerationArrayCount);
 void convertNeighborhoodToIndex(int leftNeighbor, int current, int rightNeigbhor);
 void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray[], int generationArrayCount, int ruleSetArray[8]);
+void clearArray(int array[], int count);
 
 int main(){
 
@@ -35,12 +36,26 @@ int main(){
         return 0;
     }
 
+    convertRuleSetNumberToRuleSetArray(ruleSetNumber, ruleSetArray);
+
+
+    //int currentGeneration [64];
+    //int nextGeneration [64];
+    //create the first generation
+    //clearArray(currentGeneration, 64);
+    //currentGeneration[32] = 1;
+    //displayCurrentGeneration(currentGeneration, 64);
     
+    //for (int i = 0; i < 49; i++){
+    //    computeNextGeneration(currentGeneration, nextGeneration, 64, ruleSetArray);
+    //    currentGeneration = nextGeneration;
+    //    displayCurrentGeneration(currentGeneration, 64);
+    //}
 
     //For Testing Purposes Only
     std::cout << "You Wrote:" <<std::endl;
 
-    convertRuleSetNumberToRuleSetArray(ruleSetNumber, ruleSetArray);
+    
     for (int i = 0; i < 8; i++)
     {
         std::cout << ruleSetArray[i] <<std::endl;
@@ -61,11 +76,7 @@ void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSetArray[8]){
         throw std::invalid_argument("Rule Set Number out of range!");
     }
     
-    //Make sure the array is full of zeroes.
-    for (int i = 0; i < 8; i++)
-    {
-        ruleSetArray[i] = 0;
-    }
+    clearArray(ruleSetArray, 8);
 
     //Converts the ruleSetNumber into binary
     int currIndex = 0; //Keeps track of the current place we are look at in the ruleSetArray.
@@ -92,16 +103,41 @@ void displayCurrentGeneration(int currentGenerationArray[], int currentGeneratio
 /// @param leftNeighbor The neighbor left of the cell you are currently examining (multiplied by 4)
 /// @param current The cell you are currently examining (multiplied by 2)
 /// @param rightNeigbhor The cell to the right of the cell you are currently examinging (multiplied by 1)
-void convertNeighborhoodToIndex(int leftNeighbor, int current, int rightNeigbhor){
+int convertNeighborhoodToIndex(int leftNeighbor, int current, int rightNeigbhor){
+
+    return leftNeighbor*4 + current*2 + rightNeigbhor;
 
 }
+
 /// @brief Modifies the nextGeneration Array with the results of the currentGeneration and the given ruleset.
 /// @param currentGenerationArray The current generation you would like to compute on ONLY 0s and 1s
 /// @param nextGenerationArray The array the next generation will be stored in
 /// @param generationArrayCount The number of elements in the currentGeneration Array
 /// @param ruleSetArray The binary array describing the rules of the simulation.
 void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray[], int generationArrayCount, int ruleSetArray[8]){
+    //First
+    int neigbhborIndex = convertNeighborhoodToIndex(0, currentGenerationArray[0], currentGenerationArray[1]);
+    nextGenerationArray[0] = ruleSetArray[7-neigbhborIndex]; //The rule you apply maps directly to the 7-neighborIndex
+    
+    //Middle
+    for (int i = 1; i < 63; i++){
+        neigbhborIndex = convertNeighborhoodToIndex(currentGenerationArray[i-1], currentGenerationArray[i], currentGenerationArray[i+1]);
+        nextGenerationArray[i] = ruleSetArray[7-neigbhborIndex];
+    }
 
+    //Last
+    neigbhborIndex = convertNeighborhoodToIndex(currentGenerationArray[63], currentGenerationArray[64], 0);
+    nextGenerationArray[64] = ruleSetArray[7-neigbhborIndex];
+}
+
+/// @brief Helper method to convert any array into only zeroes.
+/// @param array the array you want to clear
+/// @param count how large the array is
+void clearArray(int array[], int count){
+    for (int i = 0; i < count; i++)
+    {
+        array[i] = 0;
+    }
 }
 
 
