@@ -22,9 +22,12 @@ void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray
 
 int main(){
 
+    int ruleSetNumber;
     std::cout << "Welcome to Cellular Automata!" << std::endl;
     std::cout << "Please input your ruleset as a single integer from 0-255:" <<std::endl;
-
+    std::cin << ruleSetNumber;
+    std::cout << "You Wrote:" <<std::endl;
+    std::cout << ruleSetNumber <<std::endl;
     return 0;
 }
 
