@@ -13,12 +13,16 @@ index 7: [0,0,0]
 It will then run the simulation for 49 consecutive generations on 64 value long array with the 32nd index starting as alive.
 
 */
+#include <iostream>
+
 void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSsetArray[8]);
 void displayCurrentGeneration(int currentGenerationArray[], int currentGenerationArrayCount);
 void convertNeighborhoodToIndex(int leftNeighbor, int current, int rightNeigbhor);
 void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray[], int generationArrayCount, int ruleSetArray[8]);
 
 int main(){
+
+
     return 0;
 }
 
