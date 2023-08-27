@@ -35,6 +35,9 @@ int main(){
         return 0;
     }
 
+    
+
+    //For Testing Purposes Only
     std::cout << "You Wrote:" <<std::endl;
 
     convertRuleSetNumberToRuleSetArray(ruleSetNumber, ruleSetArray);
@@ -52,8 +55,28 @@ int main(){
 /// @param ruleSetNumber a number between 0 and 255 that represenets the ruleset you would like to implement.
 /// @param rulSsetArray an array OF LENGTH 8 that the ruleset will be mapped on to.
 void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSetArray[8]){
-    for (int i = 0; i < 8; i++){
+    //Check if our rule set number is in bound.
+    if (ruleSetNumber < 0 || ruleSetNumber > 255)
+    {
+        throw std::invalid_argument("Rule Set Number out of range!");
+    }
+    
+    //Make sure the array is full of zeroes.
+    for (int i = 0; i < 8; i++)
+    {
         ruleSetArray[i] = 0;
+    }
+
+    //Converts the ruleSetNumber into binary
+    int currIndex = 0; //Keeps track of the current place we are look at in the ruleSetArray.
+    while (ruleSetNumber != 0)
+    {
+        if(ruleSetNumber%2 == 1)
+        {
+            ruleSetArray[currIndex] = 1;
+        }
+        ruleSetNumber = ruleSetNumber/2;
+        currIndex++;
     }
 
 }
