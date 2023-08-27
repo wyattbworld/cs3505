@@ -1,4 +1,9 @@
 /*
+@Author: C Wyatt Bruchhauser
+@date: August 27, 2023
+@Professor: David Johnson
+@Class: CS3505 - Software Practice II
+@Organization: University of Utah Kalhert School of Computing
 Cellular Automata: This program runs a one dimensions Cellular Automata Simulation similar to "Conway's Game of Life".
 It will ask the user to input a number from 0 to 255 that coorelates with a binary translation that describes the rules of the game.
 The binary array maps to the rules as follows, if a 0 is in the spot the rule inhabits the cell will die when that rule applies to it, if it is one it will be alive.
@@ -17,20 +22,22 @@ It will then run the simulation for 49 consecutive generations on 64 value long 
 
 void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSsetArray[8]);
 void displayCurrentGeneration(int currentGenerationArray[], int currentGenerationArrayCount);
-void convertNeighborhoodToIndex(int leftNeighbor, int current, int rightNeigbhor);
+int convertNeighborhoodToIndex(int leftNeighbor, int current, int rightNeigbhor);
 void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray[], int generationArrayCount, int ruleSetArray[8]);
 void clearArray(int array[], int count);
+void copyArray(int originArray[], int destinationArray[], int count);
+void printArray(int array[], int count);
 
 int main(){
 
     int ruleSetNumber;
     int ruleSetArray[8];
 
-    std::cout << "Welcome to Cellular Automata!" << std::endl;
+    std::cout << "Welcome to Cellular Automata!" <<std::endl;
     std::cout << "Please input your ruleset as a single integer from 0-255:" <<std::endl;
     std::cin >> ruleSetNumber;
 
-    if (ruleSetNumber < 0 || ruleSetNumber > 255) //Potential Feature: Deal with multiple integer inputs or non integer inputs.
+    if (ruleSetNumber < 0 || ruleSetNumber > 255) 
     {
         std::cout << "Invalid input. Exiting Program." << std::endl;
         return 0;
@@ -39,28 +46,19 @@ int main(){
     convertRuleSetNumberToRuleSetArray(ruleSetNumber, ruleSetArray);
 
 
-    //int currentGeneration [64];
-    //int nextGeneration [64];
-    //create the first generation
-    //clearArray(currentGeneration, 64);
-    //currentGeneration[32] = 1;
-    //displayCurrentGeneration(currentGeneration, 64);
-    
-    //for (int i = 0; i < 49; i++){
-    //    computeNextGeneration(currentGeneration, nextGeneration, 64, ruleSetArray);
-    //    currentGeneration = nextGeneration;
-    //    displayCurrentGeneration(currentGeneration, 64);
-    //}
+    int currentGeneration [64];
+    int nextGeneration [64];
 
-    //For Testing Purposes Only
-    std::cout << "You Wrote:" <<std::endl;
-
+    // create the first generation
+    clearArray(currentGeneration, 64);
+    currentGeneration[32] = 1;
+    displayCurrentGeneration(currentGeneration, 64);
     
-    for (int i = 0; i < 8; i++)
-    {
-        std::cout << ruleSetArray[i] <<std::endl;
+    for (int i = 0; i < 49; i++){
+        computeNextGeneration(currentGeneration, nextGeneration, 64, ruleSetArray);
+        copyArray(nextGeneration, currentGeneration, 64);
+        displayCurrentGeneration(currentGeneration, 64);
     }
-    
 
     return 0;
 }
@@ -96,7 +94,19 @@ void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSetArray[8]){
 /// @param currentGenerationArray The array you would like to print. MUST ONLY HAVE 1s or 0s
 /// @param currentGenerationArrayCount The count of the array you would like to print.
 void displayCurrentGeneration(int currentGenerationArray[], int currentGenerationArrayCount){
+    for (int i = 0; i < currentGenerationArrayCount; i++)
+    {
+        if (currentGenerationArray[i] == 0)
+        {
+            std::cout << " ";
+        }
+        else
+        {
+            std::cout << "#";
+        }
+    }
 
+    std::cout << "" << std::endl;
 }
 
 /// @brief Converts 3 cells from binary to decimal.
@@ -138,6 +148,27 @@ void clearArray(int array[], int count){
     {
         array[i] = 0;
     }
+}
+
+/// @brief Copies the content of one array to another
+/// @param originArray The array you want to copy
+/// @param destinationArray The array you want to copy to
+/// @param count The size of both arrays
+void copyArray(int originArray[], int destinationArray[], int count){
+    for (int i = 0; i < count; i++)
+    {
+        destinationArray[i] = originArray[i];
+    }
+}
+
+/// @brief Prints an array for testing purposes.
+/// @param array the array you want to print.
+/// @param count the size of the array.
+void printArray(int array[], int count){
+    for (int i = 0; i < count; i++)
+        {
+            std::cout << array[i] <<std::endl;
+        }
 }
 
 
