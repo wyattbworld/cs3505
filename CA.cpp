@@ -22,7 +22,6 @@ It will then run the simulation for 49 consecutive generations on 64 value long 
 using std::cout;
 using std::cin;
 using std::string;
-using std::size;
 
 void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSsetArray[8]);
 void displayCurrentGeneration(int currentGenerationArray[], int currentGenerationArrayCount);
