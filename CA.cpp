@@ -43,8 +43,6 @@ int main(){
     std::cout << "Please input your ruleset as a single integer from 0-255:" <<std::endl;
     std::cin >> ruleSetInput;
 
-    std::cout << ruleSetInput << std::endl;
-    
     if (!isValidRuleSetNumber(ruleSetInput)) 
     {
         std::cout << "Invalid input. Exiting Program." << std::endl;
