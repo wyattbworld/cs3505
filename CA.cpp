@@ -31,22 +31,27 @@ void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray
 void clearArray(int array[], int count);
 void copyArray(int originArray[], int destinationArray[], int count);
 void printArray(int array[], int count);
-//bool isValidRuleSetNumber(string text);
+bool isValidRuleSetNumber(string text);
 
 int main(){
 
+    string ruleSetInput;
     int ruleSetNumber;
     int ruleSetArray[8];
 
     std::cout << "Welcome to Cellular Automata!" <<std::endl;
     std::cout << "Please input your ruleset as a single integer from 0-255:" <<std::endl;
-    std::cin >> ruleSetNumber;
+    std::cin >> ruleSetInput;
 
-    if (ruleSetNumber < 0 || ruleSetNumber > 255) 
+    std::cout << ruleSetInput << std::endl;
+    
+    if (!isValidRuleSetNumber(ruleSetInput)) 
     {
         std::cout << "Invalid input. Exiting Program." << std::endl;
         return 0;
     }
+
+    ruleSetNumber = stoi(ruleSetInput);
 
     convertRuleSetNumberToRuleSetArray(ruleSetNumber, ruleSetArray);
 
