@@ -19,6 +19,10 @@ It will then run the simulation for 49 consecutive generations on 64 value long 
 
 */
 #include <iostream>
+using std::cout;
+using std::cin;
+using std::string;
+using std::size;
 
 void convertRuleSetNumberToRuleSetArray(int ruleSetNumber, int ruleSsetArray[8]);
 void displayCurrentGeneration(int currentGenerationArray[], int currentGenerationArrayCount);
@@ -27,6 +31,7 @@ void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray
 void clearArray(int array[], int count);
 void copyArray(int originArray[], int destinationArray[], int count);
 void printArray(int array[], int count);
+//bool isValidRuleSetNumber(string text);
 
 int main(){
 
@@ -126,18 +131,17 @@ int convertNeighborhoodToIndex(int leftNeighbor, int current, int rightNeigbhor)
 /// @param ruleSetArray The binary array describing the rules of the simulation.
 void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray[], int generationArrayCount, int ruleSetArray[8]){
     //First
-    int neigbhborIndex = convertNeighborhoodToIndex(0, currentGenerationArray[0], currentGenerationArray[1]);
-    nextGenerationArray[0] = ruleSetArray[7-neigbhborIndex]; //The rule you apply maps directly to the 7-neighborIndex
+    nextGenerationArray[0] = currentGenerationArray[0];
     
     //Middle
+    int neigbhborIndex;
     for (int i = 1; i < 63; i++){
         neigbhborIndex = convertNeighborhoodToIndex(currentGenerationArray[i-1], currentGenerationArray[i], currentGenerationArray[i+1]);
         nextGenerationArray[i] = ruleSetArray[7-neigbhborIndex];
     }
 
     //Last
-    neigbhborIndex = convertNeighborhoodToIndex(currentGenerationArray[63], currentGenerationArray[64], 0);
-    nextGenerationArray[64] = ruleSetArray[7-neigbhborIndex];
+    nextGenerationArray[63] = currentGenerationArray[63];
 }
 
 /// @brief Helper method to convert any array into only zeroes.
@@ -169,6 +173,36 @@ void printArray(int array[], int count){
         {
             std::cout << array[i] <<std::endl;
         }
+}
+
+
+/// @brief Checks if the given text is a valid rule set number meaning that it is 1) An integer and 2) between 0 and 255
+/// @param text the text you want to check
+/// @return true if it is valid, false if not.
+bool isValidRuleSetNumber(string text)
+{
+    //Check that there is text
+    if (text.size() == 0)
+    {
+        return false;
+    }
+
+    //Check that all characters in the strings are digits.
+    for (int i = 0; i < text.size(); i++)
+    {
+        if (!isdigit(text[i]))
+        {
+            return false;
+        }
+    }
+
+    //Check if the number is in the correct range.
+    if (stoi(text) < 0 || stoi(text) > 255) 
+    {
+        return false;
+    }
+
+    return true;
 }
 
 
