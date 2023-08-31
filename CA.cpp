@@ -137,13 +137,13 @@ void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray
     
     //Middle
     int neigbhborIndex;
-    for (int i = 1; i < 63; i++){
+    for (int i = 1; i < generationArrayCount - 1; i++){
         neigbhborIndex = convertNeighborhoodToIndex(currentGenerationArray[i-1], currentGenerationArray[i], currentGenerationArray[i+1]);
         nextGenerationArray[i] = ruleSetArray[7-neigbhborIndex];
     }
 
     //Last
-    nextGenerationArray[63] = currentGenerationArray[63];
+    nextGenerationArray[generationArrayCount - 1] = currentGenerationArray[generationArrayCount - 1];
 }
 
 /// @brief Helper method to convert any array into only zeroes.
