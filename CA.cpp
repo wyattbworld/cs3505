@@ -38,12 +38,6 @@ int main(){
     int ruleSetNumber;
     int ruleSetArray[8];
 
-    int testGeneration [10]= {0, 0, 0, 0, 0, 1, 0, 0, 0, 0};
-    int nextTestGeneration [10];
-    int testRuleSet [8] = {0,0,1,0,0,0,0,0};
-    computeNextGeneration(testGeneration, nextTestGeneration, 10, testRuleSet);
-    printArray(nextTestGeneration, 10);
-
     std::cout << "Welcome to Cellular Automata!" <<std::endl;
     std::cout << "Please input your ruleset as a single integer from 0-255:" <<std::endl;
     std::cin >> ruleSetInput;
@@ -173,15 +167,6 @@ void copyArray(int originArray[], int destinationArray[], int count){
     }
 }
 
-/// @brief Prints an array for testing purposes.
-/// @param array the array you want to print.
-/// @param count the size of the array.
-void printArray(int array[], int count){
-    for (int i = 0; i < count; i++)
-        {
-            std::cout << array[i] <<std::endl;
-        }
-}
 
 
 /// @brief Checks if the given text is a valid rule set number meaning that it is 1) An integer and 2) between 0 and 255
