@@ -38,6 +38,12 @@ int main(){
     int ruleSetNumber;
     int ruleSetArray[8];
 
+    int testGeneration [10]= {0, 0, 0, 0, 0, 1, 0, 0, 0, 0};
+    int nextTestGeneration [10];
+    int testRuleSet [8] = {0,0,1,0,0,0,0,0};
+    computeNextGeneration(testGeneration, nextTestGeneration, 10, testRuleSet);
+    printArray(nextTestGeneration, 10);
+
     std::cout << "Welcome to Cellular Automata!" <<std::endl;
     std::cout << "Please input your ruleset as a single integer from 0-255:" <<std::endl;
     std::cin >> ruleSetInput;
