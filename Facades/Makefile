@@ -8,8 +8,8 @@
 CC = g++
 CFLAGS = -Wall
 
-sinePDF : HaruPDF.cpp HaruPDF.h sinePDF.cpp
-	$(CC) $(CFLAGS) -o sinePDF HaruPDF.cpp sinePDF.cpp
+sinePDF : HaruPDF.o sinePDF.o
+	$(CC) $(CFLAGS) -o sinePDF HaruPDF.o sinePDF.o
 
 HaruPDF.o : HaruPDF.h HaruPDF.cpp
 	$(CC) $(CFLAGS) -c HaruPDF.cpp
@@ -18,4 +18,7 @@ sinePDF.o : sinePDF.cpp
 	$(CC) $(CFLAGS) -c sinePDF.cpp
 
 clean:
-	rm *.o
+	rm sinePDF *.o
+
+test:
+	./sinePDF
