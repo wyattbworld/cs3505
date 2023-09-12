@@ -12,6 +12,11 @@
 using std::cout;
 using std::endl;
 int main (){
+
+    HaruPDF pdf;
+    pdf.Save();
+    pdf.Close();
+
     cout << "it worked" << endl;
     return 0;
 
