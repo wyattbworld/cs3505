@@ -139,7 +139,7 @@ void computeNextGeneration(int currentGenerationArray[], int nextGenerationArray
     int neigbhborIndex;
     for (int i = 1; i < generationArrayCount - 1; i++){
         neigbhborIndex = convertNeighborhoodToIndex(currentGenerationArray[i-1], currentGenerationArray[i], currentGenerationArray[i+1]);
-        nextGenerationArray[i] = ruleSetArray[7-neigbhborIndex];
+        nextGenerationArray[i] = ruleSetArray[neigbhborIndex];
     }
 
     //Last
