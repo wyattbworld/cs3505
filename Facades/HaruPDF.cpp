@@ -8,6 +8,7 @@
 ///on a pdf.
 
 #include "HaruPDF.h"
+#include "hpdf.h"
 
 HaruPDF::HaruPDF ()
 {
