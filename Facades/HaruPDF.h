@@ -2,6 +2,7 @@
 ///@date September 12, 2023
 ///Professor: David Johnson
 ///Class: CS3505 - Software Practice II
+///Assignment: HW3 Facades and Makefiles
 ///Organization: University of Utah Kalhert School of Computing
 ///@brief This function is a facade for the HARUPDF library and provides
 ///only the most basic functionality to create a pdf and put words
