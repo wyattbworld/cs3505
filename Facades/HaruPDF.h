@@ -13,8 +13,11 @@ class HaruPDF {
 
 public:
 
-/// @brief Constructs a HaruPDF and opens a new pdf.
+/// @brief Constructs a HaruPDF.
 HaruPDF();
+
+/// @brief Opens a pdf
+void Open();
 
 /// @brief Draws a character onto a pdf
 /// @param x The x position you want to place it on
