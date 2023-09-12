@@ -19,7 +19,7 @@ sinePDF.o : sinePDF.cpp
 	$(CC) $(CFLAGS) -I$(LIBHARU)/include -c sinePDF.cpp -L$(LIBHARU)/src/ -lhpdfs
 
 clean:
-	rm sinePDF *.o
+	rm sinePDF *.o *.pdf
 
 test:
 	./sinePDF

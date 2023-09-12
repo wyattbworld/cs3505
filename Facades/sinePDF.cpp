@@ -14,6 +14,7 @@ using std::endl;
 int main (){
 
     HaruPDF pdf;
+    pdf.Open();
     pdf.Save();
     pdf.Close();
 

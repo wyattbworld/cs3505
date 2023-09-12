@@ -16,10 +16,10 @@ class HaruPDF {
 
 public:
 
-/// @brief Constructs a HaruPDF.
+/// @brief Constructs a HaruPDF object.
 HaruPDF();
 
-/// @brief Opens a pdf
+/// @brief Opens a pdf and creates a single page of A5 paper.
 void Open();
 
 /// @brief Draws a character onto a pdf
