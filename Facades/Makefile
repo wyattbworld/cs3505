@@ -25,4 +25,4 @@ clean:
 	rm sinePDF *.o *.pdf
 
 test:
-	./sinePDF
+	./sinePDF "I think this is a good text curve"

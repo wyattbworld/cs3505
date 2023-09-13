@@ -13,14 +13,21 @@
 
 using std::cout;
 using std::endl;
-int main (){
+int main (int argc, char **argv){
 
+    if (argc == 1) //Check if our argc only has ./sinePDF
+    {
+        cout << "Error: No string input given. Exiting program" << endl;
+        return 0;
+    }
+    
     const char* waveText = "I think this is a good text curve";
     const double canvasWidth = 580;
     const double canvasHeight = 400;
     const double degreesTwoPi = 360; //Number of degrees in a circle.
     const double waveHeightPercentage = 0.15; //How much height of the canvas should be occupied by the wave.
     HaruPDF pdf;
+    
     Sine wave(canvasHeight * waveHeightPercentage, degreesTwoPi /2, degreesTwoPi / strlen (waveText)); //We are going to iterate over all 360 degrees, so we need to add 360 / the number of characters to get our increment.
 
     pdf.Open();
@@ -34,7 +41,7 @@ int main (){
     pdf.Save();
     pdf.Close();
 
-    cout << "it worked" << endl;
+    cout << "All done" << endl;
     return 0;
 
 }
