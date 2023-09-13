@@ -26,18 +26,31 @@ int main (int argc, char **argv){
     const double canvasHeight = 400;
     const double degreesTwoPi = 360; //Number of degrees in a circle.
     const double waveHeightPercentage = 0.15; //How much height of the canvas should be occupied by the wave.
+    const unsigned int maxSquishCharacterCount = 30; //This represents the length of a string required to get the algorithm to squish the letters together.
     HaruPDF pdf;
-
-    Sine wave(canvasHeight * waveHeightPercentage, degreesTwoPi /2, degreesTwoPi / strlen (waveText)); //We are going to iterate over all 360 degrees, so we need to add 360 / the number of characters to get our increment.
 
     pdf.Open();
 
-    for (unsigned int i = 0; i < strlen (waveText); i++)
+    if (strlen (waveText) < maxSquishCharacterCount)
     {
-        pdf.DrawCharacter(wave.currentAngle() / degreesTwoPi * canvasWidth , canvasHeight/2 + wave.currentHeight(), waveText[i]);
-        wave++;
-    }
+        Sine wave(canvasHeight * waveHeightPercentage, degreesTwoPi /2, degreesTwoPi / maxSquishCharacterCount); //We are going to iterate over all 360 degrees, so we need to add 360 / the number of characters to get our increment.
 
+        for (unsigned int i = 0; i < strlen (waveText); i++)
+        {
+            pdf.DrawCharacter(wave.currentAngle() / degreesTwoPi * canvasWidth , canvasHeight/2 + wave.currentHeight(), waveText[i]);
+            wave++;
+        }
+    }
+    else 
+    {
+        Sine wave(canvasHeight * waveHeightPercentage, degreesTwoPi /2, degreesTwoPi / strlen (waveText)); //We are going to iterate over all 360 degrees, so we need to add 360 / the number of characters to get our increment.
+
+        for (unsigned int i = 0; i < strlen (waveText); i++)
+        {
+            pdf.DrawCharacter(wave.currentAngle() / degreesTwoPi * canvasWidth , canvasHeight/2 + wave.currentHeight(), waveText[i]);
+            wave++;
+        }
+    }
     pdf.Save();
     pdf.Close();
 
