@@ -15,7 +15,7 @@ using std::cout;
 using std::endl;
 int main (int argc, char **argv){
 
-    if (argc == 1) //Check if our argc only has ./sinePDF
+    if (argc != 2) //Check if our argc only has ./sinePDF
     {
         cout << "Error: No string input given. Exiting program" << endl;
         return 0;
