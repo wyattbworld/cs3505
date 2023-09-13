@@ -21,14 +21,14 @@ const HPDF_PageDirection pageDirection = HPDF_PAGE_PORTRAIT;
 
 HaruPDF::HaruPDF ()
 {
-    
+    pdf = HPDF_New (NULL, NULL);
+    page = HPDF_AddPage (pdf);
+    HPDF_Page_SetSize (page, pageSize, pageDirection);  
 }
 
 void HaruPDF::Open()
 {
-    pdf = HPDF_New (NULL, NULL);
-    page = HPDF_AddPage (pdf);
-    HPDF_Page_SetSize (page, pageSize, pageDirection);
+    
 }
 
 void HaruPDF::DrawCharacter(float x, float y, char c)

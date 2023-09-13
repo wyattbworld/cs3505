@@ -12,8 +12,6 @@
 
 class HaruPDF {
 
-
-
 public:
 
 /// @brief Constructs a HaruPDF object.

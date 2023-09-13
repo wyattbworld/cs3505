@@ -9,6 +9,7 @@
 #define SINE_H
 
 #include <iostream>
+#include "hpdf.h"
 
 class Sine {
 
