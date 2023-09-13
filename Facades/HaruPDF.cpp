@@ -43,6 +43,13 @@ void HaruPDF::DrawCharacter(float x, float y, char c)
     HPDF_Page_SetTextLeading (page, textLeading);
     HPDF_Page_SetGrayStroke (page, grayStroke);
     HPDF_Page_SetFontAndSize (page, font, textSize);
+    
+    char buf[2]; //Going to store the character we are going to print.
+    buf[0] = c;
+    buf[1] = 0;
+
+    HPDF_Page_MoveTextPos (page, 200, 200);
+
 }
 
 void HaruPDF::Save()
