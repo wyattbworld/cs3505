@@ -21,7 +21,7 @@ int main (int argc, char **argv){
         return 0;
     }
     
-    const char* waveText = "I think this is a good text curve";
+    const char* waveText = argv[1];
     const double canvasWidth = 580;
     const double canvasHeight = 400;
     const double degreesTwoPi = 360; //Number of degrees in a circle.
