@@ -18,7 +18,7 @@ HPDF_Font font;
 
 const char pdfName[] = "sinePDF.pdf"; //The filename that the pdf will save to
 const HPDF_PageSizes pageSize = HPDF_PAGE_SIZE_A5; //The size of the pdf
-const HPDF_PageDirection pageDirection = HPDF_PAGE_LANDSCAPE;
+const HPDF_PageDirection pageDirection = HPDF_PAGE_LANDSCAPE; //5.83 x 8.27
 const char fontName[] = "Courier-Bold";
 HPDF_REAL textLeading = 20;
 HPDF_REAL grayStroke = 0;
