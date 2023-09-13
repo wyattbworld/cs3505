@@ -15,6 +15,7 @@ int main (){
 
     HaruPDF pdf;
     pdf.Open();
+    pdf.DrawCharacter(200, 200, 'j');
     pdf.Save();
     pdf.Close();
 

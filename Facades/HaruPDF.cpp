@@ -48,8 +48,9 @@ void HaruPDF::DrawCharacter(float x, float y, char c)
     buf[0] = c;
     buf[1] = 0;
 
-    HPDF_Page_MoveTextPos (page, 200, 200);
-
+    HPDF_Page_MoveTextPos (page, x, y);
+    HPDF_Page_ShowText (page, buf);
+    HPDF_Page_EndText(page);
 }
 
 void HaruPDF::Save()
