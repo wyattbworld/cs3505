@@ -22,6 +22,7 @@ const HPDF_PageDirection pageDirection = HPDF_PAGE_PORTRAIT;
 const char fontName[] = "Courier-Bold";
 HPDF_REAL textLeading = 20;
 HPDF_REAL grayStroke = 0;
+HPDF_REAL textSize = 30;
 
 HaruPDF::HaruPDF ()
 {
@@ -41,7 +42,7 @@ void HaruPDF::DrawCharacter(float x, float y, char c)
     font = HPDF_GetFont (pdf, fontName, NULL);
     HPDF_Page_SetTextLeading (page, textLeading);
     HPDF_Page_SetGrayStroke (page, grayStroke);
-    HPDF_Page_SetFontAndSize (page, font, 30);
+    HPDF_Page_SetFontAndSize (page, font, textSize);
 }
 
 void HaruPDF::Save()
