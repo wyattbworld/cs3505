@@ -16,20 +16,17 @@ using std::endl;
 int main (){
 
     const char* waveText = "I think this is a good text curve";
-
+    const double canvasWidth = 610;
+    const double canvasHeight = 400;
+    const double degreesTwoPi = 360; //Number of degrees in a circle.
     HaruPDF pdf;
     Sine wave(1.0, 180.0, 360 / strlen (waveText)); //We are going to iterate over all 360 degrees, so we need to add 360 / the number of characters to get our increment.
 
     pdf.Open();
 
-    pdf.DrawCharacter(0, 0, 'c');
-    pdf.DrawCharacter(0, 400, 'a');
-    pdf.DrawCharacter(575, 0 , 'd'); 
-    pdf.DrawCharacter(575, 400 , 'b');
-
-    for (int i = 0; i < strlen (waveText); i++)
+    for (unsigned int i = 0; i < strlen (waveText); i++)
     {
-        pdf.DrawCharacter(wave.currentAngle() / 360 * 610 , 200 - wave.currentHeight() * 200 /3, waveText[i]);
+        pdf.DrawCharacter(wave.currentAngle() / degreesTwoPi * canvasWidth , canvasHeight/2 - wave.currentHeight() * canvasHeight /6, waveText[i]);
         wave++;
     }
 
