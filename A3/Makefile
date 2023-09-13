@@ -22,7 +22,7 @@ Sine.o : Sine.cpp Sine.h
 	$(CC) $(CFLAGS) -c Sine.cpp
 
 clean:
-	rm sinePDF *.o *.pdf
+	rm sinePDF *.o
 
 test:
 	./sinePDF "I think this is a good text curve"
