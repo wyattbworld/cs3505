@@ -14,10 +14,14 @@
 
 HPDF_Doc pdf;
 HPDF_Page page;
+HPDF_Font font;
 
 const char pdfName[] = "sinePDF.pdf"; //The filename that the pdf will save to
 const HPDF_PageSizes pageSize = HPDF_PAGE_SIZE_A5; //The size of the pdf
 const HPDF_PageDirection pageDirection = HPDF_PAGE_PORTRAIT;
+const char fontName[] = "Courier-Bold";
+HPDF_REAL textLeading = 20;
+HPDF_REAL grayStroke = 0;
 
 HaruPDF::HaruPDF ()
 {
@@ -33,7 +37,11 @@ void HaruPDF::Open()
 
 void HaruPDF::DrawCharacter(float x, float y, char c)
 {
-    
+    HPDF_Page_BeginText (page);
+    font = HPDF_GetFont (pdf, fontName, NULL);
+    HPDF_Page_SetTextLeading (page, textLeading);
+    HPDF_Page_SetGrayStroke (page, grayStroke);
+    HPDF_Page_SetFontAndSize (page, font, 30);
 }
 
 void HaruPDF::Save()
